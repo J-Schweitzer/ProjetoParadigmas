@@ -1,0 +1,73 @@
+-- Tabela Clientes
+CREATE TABLE Clientes (
+    id_cliente SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL, -- Formato 'XXX.XXX.XXX-XX'
+    telefone VARCHAR(20),
+    email VARCHAR(100) UNIQUE,
+    endereco TEXT
+);
+
+-- Tabela Funcionarios
+CREATE TABLE Funcionarios (
+    id_funcionario SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL, -- Formato 'XXX.XXX.XXX-XX'
+    telefone VARCHAR(20),
+    email VARCHAR(100) UNIQUE,
+    cargo VARCHAR(50) NOT NULL,
+    salario DECIMAL(10, 2)
+);
+
+-- Tabela Pets
+CREATE TABLE Pets (
+    id_pet SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especie VARCHAR(50) NOT NULL, -- Ex: 'Cachorro', 'Gato'
+    raca VARCHAR(50),
+    data_nascimento DATE,
+    porte VARCHAR(20), -- Ex: 'Pequeno', 'Médio', 'Grande'
+    id_cliente INT NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente) ON DELETE CASCADE
+);
+
+-- Tabela Servicos
+CREATE TABLE Servicos (
+    id_servico SERIAL PRIMARY KEY,
+    tipo_servico VARCHAR(100) NOT NULL UNIQUE,
+    descricao TEXT,
+    valor_base DECIMAL(10, 2) NOT NULL
+);
+
+-- Tabela Atendimentos
+CREATE TABLE Atendimentos (
+    id_atendimento SERIAL PRIMARY KEY,
+    data_atendimento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    observacoes TEXT,
+    valor_final DECIMAL(10, 2) NOT NULL,
+    id_pet INT NOT NULL,
+    id_funcionario INT NOT NULL,
+    id_servico INT NOT NULL,
+    FOREIGN KEY (id_pet) REFERENCES Pets(id_pet) ON DELETE CASCADE,
+    FOREIGN KEY (id_funcionario) REFERENCES Funcionarios(id_funcionario) ON DELETE RESTRICT, -- Não permite deletar funcionário com atendimentos vinculados
+    FOREIGN KEY (id_servico) REFERENCES Servicos(id_servico) ON DELETE RESTRICT -- Não permite deletar serviço com atendimentos vinculados
+);
+
+
+
+INSERT INTO Servicos (tipo_servico, descricao, valor_base) VALUES
+('Banho Cachorro P', 'Banho com shampoo e condicionador específicos para pets de porte pequeno.', 55.90),
+('Banho Cachorro M', 'Banho com shampoo e condicionador específicos para pets de porte médio.', 75.90),
+('Banho Cachorro G', 'Banho com shampoo e condicionador específicos para pets de porte grande.', 99.90),
+('Tosa Cachorro', 'Corte completo de pelos conforme a preferencia dO cliente.', 70.00),
+
+('Banho Gato Pelo Curto', 'Banho completo para gatos de pelo curto.', 94.99),
+('Banho Gato Pelo Longo', 'Banho completo e desembolo para gatos de pelo longo, incluindo hidratação.', 149.99),
+('Tosa Gato', 'Tosa específica para gatos (geralmente sedados), para remoção de nós ou estilo.', 175.99);
+
+('Tosa Higiênica', 'Corte de pelos em áreas específicas para higiene (patas, barriga, região anal).', 45.99),
+
+('Consulta Veterinária', 'Consulta de rotina com o veterinário para avaliação de saúde.', 159.99),
+('Vacinação', 'Aplicação de vacina, sem valor da vacina incluido (o valor pode variar).', 29.99),
+('Hospedagem por Dia', 'Diária de hospedagem para pets.', 79.99),
+
