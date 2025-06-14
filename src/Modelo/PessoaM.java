@@ -4,35 +4,23 @@
  */
 package Modelo;
 
-import java.util.List;
 /**
  *
  * @author Joao
  */
-public class ClienteM extends PessoaM{
-    private String endereco;
-    private List<PetM> pets;
+public class PessoaM {
+    protected int id;
+    protected String nome;
+    protected String cpf;
+    protected String telefone;
+    protected String email;
 
-    public ClienteM(String endereco, List<PetM> pets, int id, String nome, String cpf, String telefone, String email) {
-        super(id, nome, cpf, telefone, email);
-        this.endereco = endereco;
-        this.pets = pets;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public List<PetM> getPets() {
-        return pets;
-    }
-
-    public void setPets(List<PetM> pets) {
-        this.pets = pets;
+    public PessoaM(int id, String nome, String cpf, String telefone, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
     }
 
     public int getId() {
@@ -77,13 +65,12 @@ public class ClienteM extends PessoaM{
     
     @Override
     public String toString() {
-        return "Cliente{" +
-               "id=" + getId() +
-               ", nome='" + getNome() + '\'' +
-               ", cpf='" + getCpf() + '\'' +
-               ", telefone='" + getTelefone() + '\'' +
-               ", email='" + getEmail() + '\'' +
-               ", endereco='" + endereco + '\'' +
+        return "Pessoa{" +
+               "id=" + id +
+               ", nome='" + nome + '\'' +
+               ", cpf='" + cpf + '\'' +
+               ", telefone='" + telefone + '\'' +
+               ", email='" + email + '\'' +
                '}';
     }
 }

@@ -4,35 +4,36 @@
  */
 package Modelo;
 
-import java.util.List;
+import java.math.BigDecimal;
+
 /**
  *
  * @author Joao
  */
-public class ClienteM extends PessoaM{
-    private String endereco;
-    private List<PetM> pets;
+public class FuncionarioM extends PessoaM{
+    private String cargo;
+    private BigDecimal salario;
 
-    public ClienteM(String endereco, List<PetM> pets, int id, String nome, String cpf, String telefone, String email) {
+    public FuncionarioM(String cargo, BigDecimal salario, int id, String nome, String cpf, String telefone, String email) {
         super(id, nome, cpf, telefone, email);
-        this.endereco = endereco;
-        this.pets = pets;
+        this.cargo = cargo;
+        this.salario = salario;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
-    public List<PetM> getPets() {
-        return pets;
+    public BigDecimal getSalario() {
+        return salario;
     }
 
-    public void setPets(List<PetM> pets) {
-        this.pets = pets;
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
     }
 
     public int getId() {
@@ -77,13 +78,15 @@ public class ClienteM extends PessoaM{
     
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "Funcionario{" +
                "id=" + getId() +
                ", nome='" + getNome() + '\'' +
                ", cpf='" + getCpf() + '\'' +
                ", telefone='" + getTelefone() + '\'' +
                ", email='" + getEmail() + '\'' +
-               ", endereco='" + endereco + '\'' +
+               ", cargo='" + cargo + '\'' +
+               ", salario=" + salario +
                '}';
     }
+
 }
