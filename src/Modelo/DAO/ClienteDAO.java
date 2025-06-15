@@ -40,7 +40,7 @@ public class ClienteDAO {
 
     // Atualizar Cliente existente
     public boolean atualizar(ClienteM cliente) {
-        String sql = "UPDATE cliente SET nome = ?, cpf = ?, telefone = ?, email = ?, endereco = ? WHERE id = ?";
+        String sql = "UPDATE cliente SET nome = ?, cpf = ?, telefone = ?, email = ?, endereco = ? WHERE id_cliente = ?";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNome());
@@ -60,7 +60,7 @@ public class ClienteDAO {
 
     // Excluir Cliente pelo id
     public boolean excluir(int id) {
-        String sql = "DELETE FROM cliente WHERE id = ?";
+        String sql = "DELETE FROM cliente WHERE id_cliente = ?";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -75,13 +75,13 @@ public class ClienteDAO {
 
     // Buscar Cliente pelo id
     public ClienteM buscarPorId(int id) {
-        String sql = "SELECT id, nome, cpf, telefone, email, endereco FROM cliente WHERE id = ?";
+        String sql = "SELECT id_cliente, nome, cpf, telefone, email, endereco FROM cliente WHERE id_cliente = ?";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    int clienteId = rs.getInt("id");
+                    int clienteId = rs.getInt("id_cliente");
                     String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
                     String telefone = rs.getString("telefone");
@@ -102,12 +102,12 @@ public class ClienteDAO {
     // Listar todos os Clientes
     public List<ClienteM> listarTodos() {
         List<ClienteM> clientes = new ArrayList<>();
-        String sql = "SELECT id, nome, cpf, telefone, email, endereco FROM cliente ORDER BY nome";
+        String sql = "SELECT id_cliente, nome, cpf, telefone, email, endereco FROM cliente ORDER BY nome";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                int clienteId = rs.getInt("id");
+                int clienteId = rs.getInt("id_cliente");
                 String nome = rs.getString("nome");
                 String cpf = rs.getString("cpf");
                 String telefone = rs.getString("telefone");

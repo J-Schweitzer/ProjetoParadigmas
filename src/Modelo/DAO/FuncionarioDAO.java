@@ -40,7 +40,7 @@ public class FuncionarioDAO {
 
     // Atualizar Funcionario existente
     public boolean atualizar(FuncionarioM funcionario) {
-        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, telefone = ?, email = ?, cargo = ?, salario = ? WHERE id = ?";
+        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, telefone = ?, email = ?, cargo = ?, salario = ? WHERE id_funcionario = ?";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, funcionario.getNome());
@@ -76,13 +76,13 @@ public class FuncionarioDAO {
 
     // Buscar Funcionario pelo id
     public FuncionarioM buscarPorId(int id) {
-        String sql = "SELECT id, nome, cpf, telefone, email, cargo, salario FROM funcionario WHERE id = ?";
+        String sql = "SELECT id_funcionario, nome, cpf, telefone, email, cargo, salario FROM funcionario WHERE id_funcionario = ?";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    int funcionarioId = rs.getInt("id");
+                    int funcionarioId = rs.getInt("id_funcionario");
                     String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
                     String telefone = rs.getString("telefone");
@@ -103,12 +103,12 @@ public class FuncionarioDAO {
     // Listar todos os Funcionários
     public List<FuncionarioM> listarTodos() {
         List<FuncionarioM> funcionarios = new ArrayList<>();
-        String sql = "SELECT id, nome, cpf, telefone, email, cargo, salario FROM funcionario ORDER BY nome";
+        String sql = "SELECT id_funcionario, nome, cpf, telefone, email, cargo, salario FROM funcionario ORDER BY nome";
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                int funcionarioId = rs.getInt("id");
+                int funcionarioId = rs.getInt("id_funcionario");
                 String nome = rs.getString("nome");
                 String cpf = rs.getString("cpf");
                 String telefone = rs.getString("telefone");

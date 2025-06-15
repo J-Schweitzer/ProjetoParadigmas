@@ -23,11 +23,12 @@ public class LoginV extends JFrame {
     private JTextField txtCpf;
     private JButton btnEntrar;
     private JButton btnCancelar;
+    private JButton btnContratar; // Novo botão "Contratar"
 
     public LoginV() {
         setTitle("Login - Gerenciador PetShop");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 220);
+        setSize(400, 260);
         setLocationRelativeTo(null); // Centraliza na tela
         setResizable(false);
         initComponents();
@@ -54,7 +55,7 @@ public class LoginV extends JFrame {
 
         gbc.gridy++;
         gbc.gridwidth = 1;
-        JLabel lblCpf = new JLabel("CPF:");
+        JLabel lblCpf = new JLabel("CPF: ");
         lblCpf.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         painel.add(lblCpf, gbc);
 
@@ -65,21 +66,21 @@ public class LoginV extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy++;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 3;
         gbc.insets = new Insets(24, 0, 0, 0);
 
         JPanel panelBotoes = new JPanel();
         panelBotoes.setBackground(Color.WHITE);
-        panelBotoes.setLayout(new GridLayout(1, 2, 20, 0));
+        panelBotoes.setLayout(new GridLayout(1, 3, 15, 0)); // Agora 3 botões com espaçamento de 15px
 
-        btnEntrar = new JButton("Entrar \u27A4");
+        btnEntrar = new JButton("Entrar");
         btnEntrar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnEntrar.setBackground(new Color(33, 150, 243));
         btnEntrar.setForeground(Color.WHITE);
         btnEntrar.setFocusPainted(false);
         btnEntrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        btnCancelar = new JButton("Cancelar \u2716");
+        btnCancelar = new JButton("Limpar");
         btnCancelar.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnCancelar.setBackground(new Color(244, 67, 54));
         btnCancelar.setForeground(Color.WHITE);
@@ -117,7 +118,6 @@ public class LoginV extends JFrame {
             return;
         }
 
-        // Verificar se é Funcionário
         FuncionarioC funcionarioC = new FuncionarioC();
         FuncionarioM funcionario = funcionarioC.listarFuncionarios().stream()
                 .filter(f -> cpf.equals(f.getCpf()))
@@ -128,11 +128,10 @@ public class LoginV extends JFrame {
             // Abrir TelaAdmV
             JOptionPane.showMessageDialog(this, "Login como Funcionário: " + funcionario.getNome(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             dispose();
-            new TelaAdmV().setVisible(true);
+            new TelaFuncionarioV().setVisible(true);
             return;
         }
 
-        // Verificar se é Cliente
         ClienteC clienteC = new ClienteC();
         ClienteM cliente = clienteC.listarClientes().stream()
                 .filter(c -> cpf.equals(c.getCpf()))
@@ -147,7 +146,6 @@ public class LoginV extends JFrame {
             return;
         }
 
-        // CPF não encontrado
         JOptionPane.showMessageDialog(this, "CPF não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
         txtCpf.requestFocus();
     }

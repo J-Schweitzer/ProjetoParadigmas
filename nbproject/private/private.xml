@@ -3,14 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/gerenciapetshop/GerenciaPetShop.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/PessoaM.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/ClienteM.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/FuncionarioM.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/PetM.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/ServicoM.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/AtendimentoM.java</file>
-            <file>file:/C:/Users/Joao/Documents/NetBeansProjects/GerenciaPetShop/src/Modelo/BDConnection.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/BDConnection.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/gerenciapetshop/GerenciaPetShop.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/DAO/PetDAO.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/DAO/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/DAO/ServicoDAO.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/DAO/AtendimentoDAO.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/PessoaM.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/ServicoM.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/PetM.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/FuncionarioM.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Modelo/ClienteM.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Controle/ClienteC.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Controle/PetC.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Controle/FuncionarioC.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Controle/ServicoC.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Controle/AtendimentoC.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Visao/LoginV.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Visao/TelaClienteV.java</file>
+            <file>file:/C:/Users/Joao/Desktop/Projetos/Paradigmas/GerenciaPetShop/src/Visao/TelaAdmV.java</file>
         </group>
     </open-files>
 </project-private>

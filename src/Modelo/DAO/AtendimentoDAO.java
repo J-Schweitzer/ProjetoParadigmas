@@ -2,6 +2,9 @@ package Modelo.DAO;
 
 import Modelo.AtendimentoM;
 import Modelo.BDConnection;
+import Modelo.FuncionarioM;
+import Modelo.PetM;
+import Modelo.ServicoM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -80,6 +83,10 @@ public class AtendimentoDAO {
     // Buscar Atendimento pelo id
     public AtendimentoM buscarPorId(int idAtendimento) {
         String sql = "SELECT id_atendimento, data_atendimento, observacoes, valor_final, id_pet, id_funcionario, id_servico FROM atendimento WHERE id_atendimento = ?";
+        PetDAO petDAO = new PetDAO();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+        ServicoDAO servicoDAO = new ServicoDAO();
+
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, idAtendimento);
@@ -93,8 +100,11 @@ public class AtendimentoDAO {
                     int idFuncionario = rs.getInt("id_funcionario");
                     int idServico = rs.getInt("id_servico");
 
-                    // Para simplificação, os objetos PetM, FuncionarioM e ServicoM serão nulos
-                    AtendimentoM atendimento = new AtendimentoM(atendimentoId, dataAtendimento, observacoes, valorFinal, idPet, idFuncionario, idServico, null, null, null);
+                    PetM pet = petDAO.buscarPorId(idPet);
+                    FuncionarioM funcionario = funcionarioDAO.buscarPorId(idFuncionario);
+                    ServicoM servico = servicoDAO.buscarPorId(idServico);
+
+                    AtendimentoM atendimento = new AtendimentoM(atendimentoId, dataAtendimento, observacoes, valorFinal, idPet, idFuncionario, idServico, pet, funcionario, servico);
                     return atendimento;
                 }
             }
@@ -105,13 +115,20 @@ public class AtendimentoDAO {
         return null;
     }
 
+
     // Listar todos os Atendimentos
     public List<AtendimentoM> listarTodos() {
         List<AtendimentoM> atendimentos = new ArrayList<>();
         String sql = "SELECT id_atendimento, data_atendimento, observacoes, valor_final, id_pet, id_funcionario, id_servico FROM atendimento ORDER BY data_atendimento DESC";
+
+        PetDAO petDAO = new PetDAO();
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+        ServicoDAO servicoDAO = new ServicoDAO();
+
         try (Connection conn = BDConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
+
             while (rs.next()) {
                 int atendimentoId = rs.getInt("id_atendimento");
                 LocalDateTime dataAtendimento = rs.getTimestamp("data_atendimento").toLocalDateTime();
@@ -121,7 +138,11 @@ public class AtendimentoDAO {
                 int idFuncionario = rs.getInt("id_funcionario");
                 int idServico = rs.getInt("id_servico");
 
-                AtendimentoM atendimento = new AtendimentoM(atendimentoId, dataAtendimento, observacoes, valorFinal, idPet, idFuncionario, idServico, null, null, null);
+                PetM pet = petDAO.buscarPorId(idPet);
+                FuncionarioM funcionario = funcionarioDAO.buscarPorId(idFuncionario);
+                ServicoM servico = servicoDAO.buscarPorId(idServico);
+
+                AtendimentoM atendimento = new AtendimentoM(atendimentoId, dataAtendimento, observacoes, valorFinal, idPet, idFuncionario, idServico, pet, funcionario, servico);
                 atendimentos.add(atendimento);
             }
         } catch (SQLException ex) {
@@ -130,4 +151,5 @@ public class AtendimentoDAO {
         }
         return atendimentos;
     }
+
 }
