@@ -20,10 +20,6 @@ Este sistema visa simplificar a gestão de um pet shop, oferecendo as seguintes 
 * **Gestão de Atendimentos:**
     * Registro detalhado de cada atendimento realizado.
     * Consulta de histórico de atendimentos por pet, cliente ou período.
-* **Relatórios (Futuro):**
-    * Listagem de pets por cliente.
-    * Histórico de atendimentos.
-    * Faturamento e serviços mais utilizados (a serem implementados).
 
 ## 💡 Arquitetura e Tecnologias
 
@@ -35,4 +31,3 @@ O projeto é construído sobre uma arquitetura robusta e moderna, utilizando as 
 * **Paradigma:** Programação Orientada a Objetos (POO) com herança, polimorfismo e encapsulamento.
 * **Banco de Dados:** PostgreSQL (Relacional)
 * **Driver de Conexão:** JDBC PostgreSQL
-* **Ferramenta de Build (Recomendado):** Maven ou Gradle (para gerenciamento de dependências)
